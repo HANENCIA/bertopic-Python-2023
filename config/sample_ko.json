@@ -1,0 +1,50 @@
+{
+  "DATA": {
+    "CSV_PATH": "./data/sample_ko.csv",
+    "DATE_COLUMN": "년도",
+    "RAW_COLUMN": "키워드",
+    "STOPWORDS_PATH": "./data/stopwords_ko.csv"
+  },
+  "EMBEDDING": {
+    "__TOKEN_NAME__": "./model/paraphrase-multilingual-MiniLM-L12-v2",
+    "TOKEN_NAME": "paraphrase-multilingual-MiniLM-L12-v2"
+  },
+  "BERTOPIC": {
+    "__COMMENT_LANGUAGE": "english or korean",
+    "LANGUAGE": "korean",
+    "__COMMENT_UMAP_N_NEIGHBORS__": 15,
+    "UMAP_N_NEIGHBORS": 15,
+    "__COMMENT_UMAP_N_COMPONENTS__": 10,
+    "UMAP_N_COMPONENTS": 10,
+    "UMAP_MIN_DIST": 0.05,
+    "HDBSCAN_MIN_CLUSTER_SIZE": 10,
+    "HDBSCAN_MIN_SAMPLES": 15,
+    "TFIDF_NGRAM_MIN": 1,
+    "TFIDF_NGRAM_MAX": 2,
+    "__COMMENT_TOPIC_N__": "토픽의 수를 임의로 설정하거나 'auto'로 자동으로 설정",
+    "TOPIC_N": "auto",
+    "TOP_N_WORDS": 20,
+    "__COMMENT_TOP_N_REP_DOCS__": "Topic 별 출력할 representative docs 수",
+    "TOP_N_REP_DOCS": 5,
+    "__COMMENT_REP_DOCS_TARGET_COLUMN__": "한국어처럼 분석은 keyword로 하지만 representative docs를 Full Text로 받아야 하는 경우 Full Text에 해당하는 column 입력. 미사용시 큰 따옴표 '' 입력",
+    "REP_DOCS_TARGET_COLUMN": "본문"
+  },
+  "GRAPH": {
+    "WIDTH": 1920,
+    "HEIGHT": 1080
+  },
+  "RESULT": {
+    "MODEL_PATH": "./result/sample_ko/model",
+    "TOPIC_INFO_PATH": "./result/sample_ko/topic_info.csv",
+    "TOPIC_DOC_PATH": "./result/sample_ko/topic_doc.csv",
+    "TOPIC_REP_DOCS_PATH": "./result/sample_ko/topic_representative_docs.csv",
+    "TOPIC_SIZE_OVER_TIME_PATH": "./result/sample_ko/topic_size_over_time.csv",
+    "TOPIC_WORD_SCORES_PATH": "./result/sample_ko/topic_word_scores.html",
+    "HIERARCHICAL_CLUSTERING_PATH": "./result/sample_ko/hierarchical_clustering.html",
+    "INTERTOPIC_DISTANCE_MAP_PATH": "./result/sample_ko/intertopic_distance_map.html",
+    "DOCUMENTS_AND_TOPICS_PATH": "./result/sample_ko/documents_and_topics.html",
+    "SIMILARITY_MATRIX_PATH": "./result/sample_ko/similarity_matrix.html",
+    "__COMMENT_TOPICS_OVER_TIME_PATH__": "시간이 매우 많이 걸림. 사용하지 않을 경우 '' 입력",
+    "TOPICS_OVER_TIME_PATH": ""
+  }
+}
