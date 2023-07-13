@@ -43,9 +43,14 @@ def tm_bertopic(config_path, model_path=None):
                   "BERTOPIC_LANG": config["BERTOPIC"]["LANGUAGE"],
                   "UMAP_N_NEIGHBORS": config["BERTOPIC"]["UMAP_N_NEIGHBORS"],
                   "UMAP_N_COMPONENTS": config["BERTOPIC"]["UMAP_N_COMPONENTS"],
+                  "UMAP_METRIC": config["BERTOPIC"]["UMAP_METRIC"],
                   "UMAP_MIN_DIST": config["BERTOPIC"]["UMAP_MIN_DIST"],
                   "HDBSCAN_MIN_CLUSTER_SIZE": config["BERTOPIC"]["HDBSCAN_MIN_CLUSTER_SIZE"],
                   "HDBSCAN_MIN_SAMPLES": config["BERTOPIC"]["HDBSCAN_MIN_SAMPLES"],
+                  "HDBSCAN_METRIC": config["BERTOPIC"]["HDBSCAN_METRIC"],
+                  "HDBSCAN_ALPHA": config["BERTOPIC"]["HDBSCAN_ALPHA"],
+                  "HDBSCAN_ALGORITHM": config["BERTOPIC"]["HDBSCAN_ALGORITHM"],
+                  "HDBSCAN_LEAF_SIZE": config["BERTOPIC"]["HDBSCAN_LEAF_SIZE"],
                   "TFIDF_NGRAM_MIN": config["BERTOPIC"]["TFIDF_NGRAM_MIN"],
                   "TFIDF_NGRAM_MAX": config["BERTOPIC"]["TFIDF_NGRAM_MAX"],
                   "TOPIC_N": config["BERTOPIC"]["TOPIC_N"],
@@ -68,9 +73,17 @@ def tm_bertopic(config_path, model_path=None):
 
     assert opt_params["BERTOPIC_LANG"] in ["english", "korean"]
 
-    os.makedirs("/".join(opt_params["TOPIC_WORD_SCORES_PATH"].split("/")[:-1]), exist_ok=True)
+    os.makedirs("/".join(opt_params["TOPIC_INFO_PATH"].split("/")[:-1]), exist_ok=True)
     os.makedirs("/".join(opt_params["TOPIC_DOC_PATH"].split("/")[:-1]), exist_ok=True)
     os.makedirs("/".join(opt_params["TOPIC_REP_DOCS_PATH"].split("/")[:-1]), exist_ok=True)
+    try:
+        os.makedirs("/".join(opt_params["TOPIC_SIZE_OVER_TIME_PATH"].split("/")[:-1]), exist_ok=True)
+    except FileNotFoundError:
+        pass
+    try:
+        os.makedirs("/".join(opt_params["TOPIC_WORD_SCORES_PATH"].split("/")[:-1]), exist_ok=True)
+    except FileNotFoundError:
+        pass
     try:
         os.makedirs("/".join(opt_params["HIERARCHICAL_CLUSTERING_PATH"].split("/")[:-1]), exist_ok=True)
     except FileNotFoundError:
@@ -89,14 +102,6 @@ def tm_bertopic(config_path, model_path=None):
         pass
     try:
         os.makedirs("/".join(opt_params["TOPICS_OVER_TIME_PATH"].split("/")[:-1]), exist_ok=True)
-    except FileNotFoundError:
-        pass
-    try:
-        os.makedirs("/".join(opt_params["TOPIC_INFO_PATH"].split("/")[:-1]), exist_ok=True)
-    except FileNotFoundError:
-        pass
-    try:
-        os.makedirs("/".join(opt_params["TOPIC_SIZE_OVER_TIME_PATH"].split("/")[:-1]), exist_ok=True)
     except FileNotFoundError:
         pass
 
@@ -130,10 +135,15 @@ def tm_bertopic(config_path, model_path=None):
     if model_path is None:
         umap_model = umap.UMAP(n_neighbors=opt_params["UMAP_N_NEIGHBORS"],
                                n_components=opt_params["UMAP_N_COMPONENTS"],
+                               metric=opt_params["UMAP_METRIC"],
                                min_dist=opt_params["UMAP_MIN_DIST"])
 
         hdbscan_model = hdbscan.HDBSCAN(min_cluster_size=opt_params["HDBSCAN_MIN_CLUSTER_SIZE"],
                                         min_samples=opt_params["HDBSCAN_MIN_SAMPLES"],
+                                        metric=opt_params["HDBSCAN_METRIC"],
+                                        alpha=opt_params["HDBSCAN_ALPHA"],
+                                        algorithm=opt_params["HDBSCAN_ALGORITHM"],
+                                        leaf_size=opt_params["HDBSCAN_LEAF_SIZE"],
                                         prediction_data=True, gen_min_span_tree=True)
 
         if opt_params["BERTOPIC_LANG"] == "english":

@@ -16,9 +16,14 @@
     "UMAP_N_NEIGHBORS": 15,
     "__COMMENT_UMAP_N_COMPONENTS__": 10,
     "UMAP_N_COMPONENTS": 10,
+    "UMAP_METRIC": "euclidean",
     "UMAP_MIN_DIST": 0.05,
     "HDBSCAN_MIN_CLUSTER_SIZE": 10,
     "HDBSCAN_MIN_SAMPLES": 15,
+    "HDBSCAN_METRIC": "euclidean",
+    "HDBSCAN_ALPHA": 1.0,
+    "HDBSCAN_ALGORITHM": "best",
+    "HDBSCAN_LEAF_SIZE": 40,
     "TFIDF_NGRAM_MIN": 1,
     "TFIDF_NGRAM_MAX": 2,
     "__COMMENT_TOPIC_N__": "토픽의 수를 임의로 설정하거나 'auto'로 자동으로 설정",
@@ -26,7 +31,7 @@
     "TOP_N_WORDS": 20,
     "__COMMENT_TOP_N_REP_DOCS__": "Topic 별 출력할 representative docs 수",
     "TOP_N_REP_DOCS": 5,
-    "__COMMENT_REP_DOCS_TARGET_COLUMN__": "한국어처럼 분석은 keyword로 하지만 representative docs를 Full Text로 받아야 하는 경우 Full Text에 해당하는 column 입력. 미사용시 큰 따옴표 '' 입력",
+    "__COMMENT_REP_DOCS_TARGET_COLUMN__": "한국어처럼 분석은 keyword로 하지만 representative docs를 Full Text로 받아야 하는 경우 Full Text에 해당하는 column 입력. '' 입력",
     "REP_DOCS_TARGET_COLUMN": ""
   },
   "GRAPH": {
